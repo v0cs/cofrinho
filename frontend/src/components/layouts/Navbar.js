@@ -9,12 +9,6 @@ function Navbar() {
       <Container>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <Link to="/">Login</Link>
-          </li>
-          <li className={styles.item}>
-            <Link to="/register">Cadastro</Link>
-          </li>
-          <li className={styles.item}>
             <Link to="/movimentation">Movimentação</Link>
           </li>
           <li className={styles.item}>
