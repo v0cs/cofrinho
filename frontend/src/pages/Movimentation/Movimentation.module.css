@@ -1,13 +1,20 @@
-.table_container {
+.container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     margin: 56px;
+
 }
 
-table {
+.movimentationContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.tableMovimentation {
     width: 100%;
     border-collapse: collapse;
+    max-width: 800px;
 }
 
 th, td {

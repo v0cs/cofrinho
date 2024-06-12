@@ -11,31 +11,32 @@ function FormMovimentation() {
             .then((data) => {
                 setListType(data);
             })
+            .catch(error => console.error('Error fetch data:', error));
     }, []);
 
     return (
         <div>
-            <form>
-                <label>Tipo</label>
-                <select id="type" name="type" required>
+            <form className={styles.form}>
+                <label className={styles.label} htmlFor="type">Tipo</label>
+                <select id="type" name="type" required className={styles.input}> 
                     <option value="Despesa">Despesa</option>
                     <option value="Receita">Receita</option>
                 </select>
-                <label>Categoria</label>
-                <select id="category" name="category" required>
+                <label className={styles.label} htmlFor="category">Categoria</label>
+                <select id="category" name="category" required className={styles.input}>
                     <option value="" disabled selected>Selecione uma categoria</option>
                     {listType.map((i) => (
                         <option key={i.id} value={i.id}>{i.sigla}</option>
                     ))}
                 </select>
 
-                <label>Descrição</label>
-                <input type="textarea" name="description" id="description" required />
-                <label>Data</label>
-                <input type="date" name="date" id="date" required />
-                <label>Valor</label>
-                <input type="number" name="value" id="value" min={0} required />
-                <input type="submit" value={"Registrar"} />
+                <label className={styles.label} htmlFor="description">Descrição</label>
+                <input type="textarea" name="description" id="description" required className={styles.input} />
+                <label className={styles.label} htmlFor="date">Data</label>
+                <input type="date" name="date" id="date" required className={styles.input} />
+                <label className={styles.label} htmlFor="value">Valor</label>
+                <input type="number" name="value" id="value" min={0} required className={styles.input} />
+                <input type="submit" value={"Registrar"} className={styles.submit} />
             </form>
         </div>
     )

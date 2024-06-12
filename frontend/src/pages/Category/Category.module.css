@@ -1,24 +1,30 @@
-form {
+.table_container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.form {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 400px;
 }
 
-label {
+.label {
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-input, select {
+.input {
     padding: 8px;
     margin-bottom: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-input[type="submit"] {
+.submit {
     padding: 10px 15px;
     background-color: #4CAF50;
     color: white;
@@ -28,6 +34,25 @@ input[type="submit"] {
     transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
+.submit:hover {
     background-color: #45a049;
+}
+
+.table_category {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
 }
