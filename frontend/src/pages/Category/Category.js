@@ -1,3 +1,4 @@
+// Category.jsx
 import { useEffect, useState } from "react";
 import styles from './Category.module.css';
 
@@ -10,32 +11,34 @@ function Category() {
             .then((response) => response.json())
             .then((data) => {
                 setlistCategory(data);
-            })
+            });
     }, []);
 
     return (
         <div className={styles.container}>
             <form className={styles.form}>
-                <label htmlFor="description">Cadastrar Categoria:</label>
+                <label htmlFor="description" className={styles.label}>Cadastrar Categoria:</label>
                 <input type="text" name="description" id="description" required className={styles.input} />
                 <input type="submit" value="Cadastrar" className={styles.submit} />
             </form>
-            <table className={styles.table_category}>
-                <thead>
-                    <tr>
-                        <th>Categoria</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listCategory.map((i) => (
-                        <tr key={i.id}>
-                            <td>{i.nome}</td>
-                            <td>Teste</td>
+            <div>
+                <table className={styles.tableCategory}>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {listCategory.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.nome}</td>
+                                <td className={styles.actions}>Editar Excluir</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

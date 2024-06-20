@@ -5,6 +5,7 @@ import Register from './pages/Auth/Register/Register'
 import Historic from './pages/Historic/Historic'
 import Movimentation from './pages/Movimentation/Movimentation'
 import Profile from './pages/Profile/Profile'
+import Category from './pages/Category/Category'
 
 import Container from './components/layouts/Container'
 import Footer from './components/layouts/Footer'
@@ -30,6 +31,9 @@ function App() {
               </Route>
               <Route path="/movimentation">
                 <Movimentation />
+              </Route>
+              <Route path="/category">
+                <Category/>
               </Route>
               <Route path="/profile">
                 <Profile />

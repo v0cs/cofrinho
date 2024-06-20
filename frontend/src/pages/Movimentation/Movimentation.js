@@ -1,7 +1,8 @@
+// Movimentation.js
+
 import { useEffect, useState } from "react";
 import FormMovimentation from './FormMovimentation';
 import styles from './Movimentation.module.css';
-import Category from "../Category/Category";
 
 function Movimentation() {
     const [listMoviment, setlistMoviment] = useState([]);
@@ -13,14 +14,13 @@ function Movimentation() {
             .then((data) => {
                 setlistMoviment(data);
             })
-            .catch(error => console.error('Error fetch data:', error));
+            .catch(error => console.error('Error fetching data:', error));
     }, []);
 
     return (
         <div className={styles.container}>
-            <Category />
-            <div className={styles.movimentationContainer}>
-                <FormMovimentation />
+            <FormMovimentation />
+            <div>
                 <table className={styles.tableMovimentation}>
                     <thead>
                         <tr>
@@ -33,14 +33,14 @@ function Movimentation() {
                         </tr>
                     </thead>
                     <tbody>
-                        {listMoviment.map((i) => (
-                            <tr key={i.id}>
-                                <td>{i.sigla}</td>
-                                <td>{i.nome}</td>
-                                <td>{i.description}</td>
-                                <td>{i.date}</td>
-                                <td>{i.value}</td>
-                                <td>Editar Excluir</td>
+                        {listMoviment.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.sigla}</td>
+                                <td>{item.nome}</td>
+                                <td>{item.description}</td>
+                                <td>{item.date}</td>
+                                <td>{item.value}</td>
+                                <td className={styles.actions}>Editar Excluir</td>
                             </tr>
                         ))}
                     </tbody>

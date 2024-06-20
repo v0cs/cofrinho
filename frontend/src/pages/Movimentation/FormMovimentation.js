@@ -15,7 +15,7 @@ function FormMovimentation() {
     }, []);
 
     return (
-        <div>
+        <div className={styles.formContainer}>
             <form className={styles.form}>
                 <label className={styles.label} htmlFor="type">Tipo</label>
                 <select id="type" name="type" required className={styles.input}> 

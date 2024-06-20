@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 56px;
+}
+
+.profileDetails, .passwordChange, .deleteAccount {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profileDetails h2, .passwordChange h2, .deleteAccount h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.profileDetails p {
+    margin-bottom: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.input {
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submit, .deleteButton {
+    padding: 10px 15px;
+    background-color: #c22b2b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit:hover, .deleteButton:hover {
+    background-color: #f33a2d;
+}
