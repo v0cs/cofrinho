@@ -10,7 +10,7 @@ const User = sequelize.define('User', {
   senha: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
 });
 
 module.exports = User;

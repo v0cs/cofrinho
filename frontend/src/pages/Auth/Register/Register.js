@@ -15,6 +15,7 @@ function Register() {
       setSuccess('Registro bem-sucedido! Agora você pode fazer login.');
       setEmail('');
       setPassword('');
+      window.location.href = "http://localhost:3000/";
     } catch (error) {
       setError('Registro falhou. Tente novamente.');
     }
@@ -32,6 +33,7 @@ function Register() {
           <label>Senha</label>
           <input type="password" name="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
           <input type="submit" value="Registrar-se" />
+          <p style={{ textAlign: "center"}}>Já possui conta?<a href='/'> Clique aqui!</a></p>
         </form>
       </div>
     </div>

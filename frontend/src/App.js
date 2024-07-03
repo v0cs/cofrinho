@@ -23,8 +23,8 @@ function App() {
           <Register />
         </Route>
         <Route>
-          <Navbar />
           <Container customClass="min-height">
+            <Navbar />
             <Switch>
               <Route path="/historic">
                 <Historic />
@@ -33,7 +33,7 @@ function App() {
                 <Movimentation />
               </Route>
               <Route path="/category">
-                <Category/>
+                <Category />
               </Route>
               <Route path="/profile">
                 <Profile />

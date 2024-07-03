@@ -1,76 +1,106 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './Profile.module.css';
 
 function Profile() {
-    const [profile, setProfile] = useState({});
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        // Simulando o carregamento dos dados do perfil
-        setTimeout(() => {
-            const dummyProfile = {
-                email: "example@example.com" // Simulação de dados do perfil
-            };
-            setProfile(dummyProfile);
-        }, 1000); // Tempo fictício de carregamento
+        const fetchProfile = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:5000/api/profile', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setEmail(response.data.email);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchProfile();
     }, []);
 
-    const handlePasswordChange = (e) => {
+    const handleChangePassword = async (e) => {
         e.preventDefault();
-        if (newPassword === confirmPassword) {
-            // Simulando a alteração de senha
-            setTimeout(() => {
-                alert("Password updated successfully");
-            }, 1000); // Simulação de tempo de resposta da API
-        } else {
-            alert("Passwords do not match");
+        if (password !== confirmPassword) {
+            setError('As senhas não coincidem');
+            return;
+        }
+        try {
+            const token = localStorage.getItem('token');
+            await axios.put('http://localhost:5000/api/profile/password', { password }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setPassword('');
+            setConfirmPassword('');
+            setError('');
+            alert('Senha alterada com sucesso!');
+        } catch (error) {
+            setError('Erro ao alterar a senha. Tente novamente.');
         }
     };
 
-    const handleDeleteAccount = () => {
-        // Simulando a exclusão da conta
-        setTimeout(() => {
-            alert("Account deleted successfully");
-            // Redirecionar ou lidar com a lógica pós-exclusão
-        }, 1000); // Simulação de tempo de resposta da API
+    const handleDeleteAccount = async () => {
+        if (window.confirm('Tem certeza que deseja excluir sua conta? Esta ação é irreversível.')) {
+            try {
+                const token = localStorage.getItem('token');
+                await axios.delete('http://localhost:5000/api/profile', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                alert('Conta excluída com sucesso!');
+                window.location.href = "/";
+                // Redirecionar para a página inicial ou realizar logout
+            } catch (error) {
+                setError('Erro ao excluir a conta. Tente novamente.');
+            }
+        }
     };
 
     return (
         <div className={styles.container}>
-            <div className={styles.profileDetails}>
-                <h2>Profile Information</h2>
-                <p><strong>Email:</strong> {profile.email}</p>
+            <h1>Perfil do Usuário</h1>
+            <div className={styles.profile}>
+                <h2>Email:</h2>
+                <p>{email}</p>
             </div>
-            <div className={styles.passwordChange}>
-                <h2>Change Password</h2>
-                <form onSubmit={handlePasswordChange} className={styles.form}>
-                    <label className={styles.label} htmlFor="newPassword">New Password</label>
+            <div className={styles.changePassword}>
+                <h2>Alterar Senha</h2>
+                <form onSubmit={handleChangePassword}>
+                    <label>Nova Senha:</label>
                     <input
                         type="password"
-                        id="newPassword"
-                        name="newPassword"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                         className={styles.input}
                     />
-                    <label className={styles.label} htmlFor="confirmPassword">Confirm Password</label>
+                    <label>Confirmar Nova Senha:</label>
                     <input
                         type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                         className={styles.input}
                     />
-                    <input type="submit" value="Change Password" className={styles.submit} />
+                    <input type="submit" value="Alterar Senha" className={styles.submit} />
                 </form>
+                {error && <p className={styles.error}>{error}</p>}
             </div>
             <div className={styles.deleteAccount}>
-                <h2>Delete Account</h2>
-                <button onClick={handleDeleteAccount} className={styles.deleteButton}>Delete Account</button>
+                <h2>Excluir Conta</h2>
+                <p>Esta ação é irreversível. Todos os dados associados à sua conta serão perdidos.</p>
+                <button onClick={handleDeleteAccount} className={styles.deleteButton}>Excluir Conta</button>
+                {error && <p className={styles.error}>{error}</p>}
             </div>
         </div>
     );

@@ -10,7 +10,6 @@ function FormMovimentation({ onSubmit }) {
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
-        // Aqui você pode buscar as categorias do seu backend ao invés da API externa
         fetchCategorias();
     }, []);
 
@@ -33,7 +32,6 @@ function FormMovimentation({ onSubmit }) {
         e.preventDefault();
         try {
             await onSubmit({ tipo, descricao, data, valor, categoria_id: categoriaId });
-            // Limpar campos após submissão bem-sucedida
             setTipo('Despesa');
             setDescricao('');
             setData('');
