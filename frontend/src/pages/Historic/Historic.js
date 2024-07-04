@@ -14,7 +14,7 @@ function Historic() {
     const fetchCategorias = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/categorias', {
+        const response = await axios.get('http://localhost:5000/api/categories', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -52,40 +52,34 @@ function Historic() {
     <div className={styles.container}>
       <h1 className={styles.title}>Histórico de Movimentações</h1>
       <form className={styles.form} onSubmit={handleSearch}>
-        <div className={styles.formGroup}>
-          <label htmlFor="dataInicio" className={styles.label}>Data de Início:</label>
-          <input
-            type="date"
-            id="dataInicio"
-            value={dataInicio}
-            onChange={(e) => setDataInicio(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="dataFim" className={styles.label}>Data de Fim:</label>
-          <input
-            type="date"
-            id="dataFim"
-            value={dataFim}
-            onChange={(e) => setDataFim(e.target.value)}
-            className={styles.input}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="categoria" className={styles.label}>Categoria:</label>
-          <select
-            id="categoria"
-            value={categoriaId}
-            onChange={(e) => setCategoriaId(e.target.value)}
-            className={styles.select}
-          >
-            <option value="">Selecione uma categoria</option>
-            {categorias.map((categoria) => (
-              <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
-            ))}
-          </select>
-        </div>
+        <label htmlFor="dataInicio" className={styles.label}>Data de Início:</label>
+        <input
+          type="date"
+          id="dataInicio"
+          value={dataInicio}
+          onChange={(e) => setDataInicio(e.target.value)}
+          className={styles.input}
+        />
+        <label htmlFor="dataFim" className={styles.label}>Data de Fim:</label>
+        <input
+          type="date"
+          id="dataFim"
+          value={dataFim}
+          onChange={(e) => setDataFim(e.target.value)}
+          className={styles.input}
+        />
+        <label htmlFor="categoria" className={styles.label}>Categoria:</label>
+        <select
+          id="categoria"
+          value={categoriaId}
+          onChange={(e) => setCategoriaId(e.target.value)}
+          className={styles.select}
+        >
+          <option value="">Selecione uma categoria</option>
+          {categorias.map((categoria) => (
+            <option key={categoria.id} value={categoria.id}>{categoria.nome}</option>
+          ))}
+        </select>
         <input type="submit" value="Filtrar" className={styles.submit} />
       </form>
       <div className={styles.movimentacoesContainer}>
@@ -93,21 +87,21 @@ function Historic() {
         <table className={styles.tableMovimentacoes}>
           <thead>
             <tr>
-              <th className={styles.tableHeader}>Tipo</th>
-              <th className={styles.tableHeader}>Descrição</th>
-              <th className={styles.tableHeader}>Data</th>
-              <th className={styles.tableHeader}>Valor</th>
-              <th className={styles.tableHeader}>Categoria</th>
+              <th>Tipo</th>
+              <th>Descrição</th>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Categoria</th>
             </tr>
           </thead>
           <tbody>
             {movimentacoes.map((movimentacao) => (
               <tr key={movimentacao.id}>
-                <td className={styles.tableData}>{movimentacao.tipo}</td>
-                <td className={styles.tableData}>{movimentacao.descricao}</td>
-                <td className={styles.tableData}>{new Date(movimentacao.data).toLocaleDateString()}</td>
-                <td className={styles.tableData}>{movimentacao.valor}</td>
-                <td className={styles.tableData}>{movimentacao.Category ? movimentacao.Category.nome : '-'}</td>
+                <td>{movimentacao.tipo}</td>
+                <td>{movimentacao.descricao}</td>
+                <td>{new Date(movimentacao.data).toLocaleDateString()}</td>
+                <td>{movimentacao.valor}</td>
+                <td>{movimentacao.Category ? movimentacao.Category.nome : '-'}</td>
               </tr>
             ))}
           </tbody>

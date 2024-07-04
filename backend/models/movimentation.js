@@ -1,3 +1,4 @@
+// models/movimentation.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const User = require('./user');
@@ -20,6 +21,13 @@ const Movimentation = sequelize.define('Movimentation', {
     allowNull: false,
   }
 });
+
+Movimentation.prototype.updateMovimentation = async function (updates) {
+  Object.keys(updates).forEach(key => {
+    this[key] = updates[key];
+  });
+  await this.save();
+};
 
 Movimentation.belongsTo(User, { foreignKey: 'usuario_id' });
 User.hasMany(Movimentation, { foreignKey: 'usuario_id' });

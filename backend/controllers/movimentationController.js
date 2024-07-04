@@ -25,11 +25,11 @@ exports.getMovimentation = async (req, res) => {
   const userId = req.user;
 
   try {
-    const movimentation = await Movimentation.findAll({
+    const movimentations = await Movimentation.findAll({
       where: { usuario_id: userId },
       include: [{ model: Category }],
     });
-    res.json(movimentation);
+    res.json(movimentations);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

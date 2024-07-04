@@ -20,17 +20,25 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <div className={styles["form-container"]}>
-        <h1>Login</h1>
-        {error && <p className={styles.error}>{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="email" name="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <label>Senha</label>
-          <input type="password" name="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
-          <input type="submit" value="Logar" />
-        </form>
-        <p>Não tem conta?<a href='/register'> Clique aqui!</a></p>
+      <div className={styles["left-panel"]}>
+        <div className={styles.title}>
+          <h1>Cofrinho Digital</h1>
+          <p className={styles.slogan}>Seu CD para gerenciamento financeiro</p>
+        </div>
+      </div>
+      <div className={styles["right-panel"]}>
+        <div className={styles["form-container"]}>
+          <h2>Login</h2>
+          {error && <p className={styles.error}>{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <label>Senha</label>
+            <input type="password" name="password" placeholder="Senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="submit" value="Logar" className={styles.submit} />
+          </form>
+          <p>Não tem conta? <a href='/register'>Clique aqui!</a></p>
+        </div>
       </div>
     </div>
   );

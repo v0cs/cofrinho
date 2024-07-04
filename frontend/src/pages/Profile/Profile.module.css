@@ -58,3 +58,9 @@
 .submit:hover, .deleteButton:hover {
     background-color: #f33a2d;
 }
+
+.error {
+    color: #c22b2b;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}

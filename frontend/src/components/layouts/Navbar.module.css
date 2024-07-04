@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    background-color: #222;
+    background-color: #444444;
     padding: 1em;
   }
   
@@ -22,6 +22,6 @@
   }
   
   .item a:hover {
-    color: #ffbb33;
+    color: #292828;
     text-decoration: none;
   }

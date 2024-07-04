@@ -69,24 +69,30 @@ function Profile() {
     return (
         <div className={styles.container}>
             <h1>Perfil do Usuário</h1>
-            <div className={styles.profile}>
+
+            {/* Detalhes do perfil */}
+            <div className={styles.profileDetails}>
                 <h2>Email:</h2>
                 <p>{email}</p>
             </div>
-            <div className={styles.changePassword}>
+
+            {/* Alterar senha */}
+            <div className={styles.passwordChange}>
                 <h2>Alterar Senha</h2>
-                <form onSubmit={handleChangePassword}>
-                    <label>Nova Senha:</label>
+                <form className={styles.form} onSubmit={handleChangePassword}>
+                    <label htmlFor="newPassword" className={styles.label}>Nova Senha:</label>
                     <input
                         type="password"
+                        id="newPassword"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         className={styles.input}
                     />
-                    <label>Confirmar Nova Senha:</label>
+                    <label htmlFor="confirmPassword" className={styles.label}>Confirmar Nova Senha:</label>
                     <input
                         type="password"
+                        id="confirmPassword"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
@@ -96,6 +102,8 @@ function Profile() {
                 </form>
                 {error && <p className={styles.error}>{error}</p>}
             </div>
+
+            {/* Excluir conta */}
             <div className={styles.deleteAccount}>
                 <h2>Excluir Conta</h2>
                 <p>Esta ação é irreversível. Todos os dados associados à sua conta serão perdidos.</p>
